@@ -15,3 +15,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({
+  require 'plugins.theme',
+
+  -- checker = { enabled = true },
+})
