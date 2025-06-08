@@ -18,6 +18,18 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   require 'plugins.theme',
-
-  -- checker = { enabled = true },
+  require 'plugins.fzf',
+}, {
+  checker = { enabled = true },
+  -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 })
