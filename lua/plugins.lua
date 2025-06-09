@@ -16,7 +16,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+local hostname = vim.loop.os_gethostname()
+
+local plugins = {
   require 'plugins.theme',
   require 'plugins.fzf',
   require 'plugins.oil',
@@ -34,19 +36,29 @@ require('lazy').setup({
   require 'plugins.treesitter-text-objects',
   require 'plugins.statusline',
   require 'plugins.which-key',
-}, {
-    checker = { enabled = true },
-    performance = {
-      rtp = {
-        disabled_plugins = {
-          "tarPlugin",
-          "tohtml",
-          "tutor",
-          "zipPlugin",
-        },
+  require 'plugins.cmp',
+}
+
+-- Conditionally add machine-specific plugins
+if hostname == 'titan' then
+  vim.list_extend(plugins, {
+    require 'plugins.lsp',
+  })
+end
+
+require('lazy').setup(plugins, {
+  checker = { enabled = true },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
       },
     },
-  })
+  },
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
