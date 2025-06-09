@@ -37,6 +37,14 @@ local plugins = {
   require 'plugins.statusline',
   require 'plugins.which-key',
   require 'plugins.cmp',
+  require 'plugins.colorizer',
+  require 'plugins.gitsigns',
+  require 'plugins.multicursors',
+  require 'plugins.todo-comments',
+  require 'plugins.undo',
+  require 'plugins.spectre',
+  require 'plugins.sleuth',
+  require 'plugins.diff',
 }
 
 -- Conditionally add machine-specific plugins
@@ -46,6 +54,7 @@ if hostname == 'titan' then
     require 'plugins.formatter',
     require 'plugins.linter',
     require 'plugins.mini-snippets',
+    require 'plugins.activity-watcher',
   })
 end
 
