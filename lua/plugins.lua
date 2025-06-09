@@ -43,6 +43,8 @@ local plugins = {
 if hostname == 'titan' then
   vim.list_extend(plugins, {
     require 'plugins.lsp',
+    require 'plugins.formatter',
+    require 'plugins.linter',
   })
 end
 
