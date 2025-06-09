@@ -19,6 +19,13 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   require 'plugins.theme',
   require 'plugins.fzf',
+  require 'plugins.oil',
+  require 'plugins.autopair',
+  require 'plugins.comment',
+  require 'plugins.harpoon',
+  require 'plugins.snacks',
+  require 'plugins.yazi',
+  require 'plugins.terminal',
 }, {
   checker = { enabled = true },
   -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
