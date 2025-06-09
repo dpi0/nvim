@@ -1,5 +1,7 @@
 return {
   -- {
+  -- compability layer for nvim-cmp plugins to work with blink
+  -- ray-x/cmp-sql is an example on how to integrate with blink
   --   'saghen/blink.compat',
   --   -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
   --   version = '*',
@@ -75,28 +77,28 @@ return {
               )
             end,
           },
-        --   sql = {
-        --     -- IMPORTANT: use the same name as you would for nvim-cmp
-        --     name = 'sql',
-        --     module = 'blink.compat.source',
+          --   sql = {
+          --     -- IMPORTANT: use the same name as you would for nvim-cmp
+          --     name = 'sql',
+          --     module = 'blink.compat.source',
 
-        --     -- all blink.cmp source config options work as normal:
-        --     score_offset = -3,
+          --     -- all blink.cmp source config options work as normal:
+          --     score_offset = -3,
 
-        --     -- this table is passed directly to the proxied completion source
-        --     -- as the `option` field in nvim-cmp's source config
-        --     --
-        --     -- this is NOT the same as the opts in a plugin's lazy.nvim spec
-        --     opts = {},
-        --     should_show_items = function()
-        --       return vim.tbl_contains(
-        --         -- Enable emoji completion only for git commits and markdown.
-        --         -- By default, enabled for all file-types.
-        --         { 'sql' },
-        --         vim.o.filetype
-        --       )
-        --     end,
-        --   },
+          --     -- this table is passed directly to the proxied completion source
+          --     -- as the `option` field in nvim-cmp's source config
+          --     --
+          --     -- this is NOT the same as the opts in a plugin's lazy.nvim spec
+          --     opts = {},
+          --     should_show_items = function()
+          --       return vim.tbl_contains(
+          --         -- Enable emoji completion only for git commits and markdown.
+          --         -- By default, enabled for all file-types.
+          --         { 'sql' },
+          --         vim.o.filetype
+          --       )
+          --     end,
+          --   },
         },
       },
 
