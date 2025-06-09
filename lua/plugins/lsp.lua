@@ -25,6 +25,13 @@ return {
       end,
       desc = 'Mason ⚙️',
     },
+    {
+      '<leader>lsp',
+      function()
+        vim.cmd 'LspInfo'
+      end,
+      desc = 'LSP Info for current buffer',
+    },
   },
   config = function()
     -- Brief aside: **What is LSP?**

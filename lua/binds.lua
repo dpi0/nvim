@@ -3,6 +3,7 @@ vim.g.maplocalleader = ','
 
 vim.keymap.set('n', '<leader>q', '<cmd>qa<CR>', { desc = 'Quit all' })
 vim.keymap.set('n', '<leader>a', 'ggVG', { desc = 'Select all text in buffer' })
+vim.keymap.set('n', '<leader>N', '<cmd>enew<CR>', { desc = 'Create a new blank buffer' })
 vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w<CR>', { desc = 'Save without auto-formatting' })
 vim.keymap.set('n', '<Leader>vb', '<C-v>', { noremap = true, desc = 'Enter Visual Block Mode' })
 vim.keymap.set('n', '<leader>spl', '<C-w>v', { desc = 'Split vertically' })
@@ -14,6 +15,13 @@ vim.keymap.set(
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = 'Replace word globally' }
 )
+vim.keymap.set('n', '<leader>W', function()
+  vim.ui.input({ prompt = 'Save as: ' }, function(input)
+    if input and input ~= '' then
+      vim.cmd('write ' .. vim.fn.fnameescape(input))
+    end
+  end)
+end, { desc = 'Save file as...' })
 vim.keymap.set('n', '<leader>flq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { desc = 'Make file executable (chmod +x)' })
 vim.keymap.set('n', '<leader>L', '<cmd>Lazy<CR>', { desc = 'Open Lazy Plugin Manager' })
@@ -66,6 +74,11 @@ vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result centered' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result centered' })
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight with <Esc>' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+vim.keymap.set('n', '<A-y>', function()
+  local pos = vim.api.nvim_win_get_cursor(0) -- Save original {line, col}
+  vim.cmd 'normal! gg0vG$y' -- Move to top-left, select to end, yank
+  vim.api.nvim_win_set_cursor(0, pos) -- Restore cursor
+end, { desc = 'Copy entire buffer and restore cursor' })
 
 -- load binds.lua before plugins are loaded
 -- reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
