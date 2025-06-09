@@ -51,6 +51,17 @@ return {
             DiagnosticVirtualTextInfo = makeDiagnosticColor(theme.diag.info),
             DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
             DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
+
+            -- https://github.com/jakobwesthoff/nvim-from-scratch/blob/1b05d7c403a5e7fa526064cf05634aedd4fc2ee9/lua/plugins/kanagawa.lua#L8
+            -- https://www.youtube.com/watch?v=E4qXZv34NQQ&t=1619s
+            -- better markdown code highlighting
+            ["@markup.link.url.markdown_inline"] = { link = "Special" }, -- (url)
+            ["@markup.link.label.markdown_inline"] = { link = "WarningMsg" }, -- [label]
+            ["@markup.italic.markdown_inline"] = { link = "Exception" }, -- *italic*
+            ["@markup.raw.markdown_inline"] = { link = "String" }, -- `code`
+            ["@markup.list.markdown"] = { link = "Function" }, -- + list
+            ["@markup.quote.markdown"] = { link = "Error" }, -- > blockcode
+            ["@markup.list.checked.markdown"] = { link = "WarningMsg" } -- - [X] checked list item
           }
         end,
       }
