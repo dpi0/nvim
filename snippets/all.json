@@ -1,0 +1,6 @@
+{
+  "Print JSON": {
+    "prefix": "pj",
+    "body": "fmt.Printf(\"%+v\\n\", ${1:obj})"
+  }
+}

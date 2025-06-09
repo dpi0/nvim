@@ -45,6 +45,7 @@ if hostname == 'titan' then
     require 'plugins.lsp',
     require 'plugins.formatter',
     require 'plugins.linter',
+    require 'plugins.mini-snippets',
   })
 end
 
