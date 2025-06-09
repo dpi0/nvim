@@ -27,6 +27,7 @@ require('lazy').setup({
   require 'plugins.yazi',
   require 'plugins.terminal',
   require 'plugins.treesitter',
+  require 'plugins.treesitter-text-objects',
 }, {
   checker = { enabled = true },
   -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
