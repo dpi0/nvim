@@ -12,7 +12,7 @@ return {
     status = true,
   },
   keys = {
-    { '<leader>bb', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
+    { '<leader>ni', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
     { '<leader>B', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
     -- { '<A-e>', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
 
