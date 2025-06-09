@@ -19,6 +19,7 @@ return {
       zsh = { 'shfmt' },
       sh = { 'shfmt' },
       json = { 'prettierd', 'prettier', stop_after_first = true },
+      toml = { 'taplo' },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- rust = { "rustfmt" },
       -- Conform will run the first available formatter
