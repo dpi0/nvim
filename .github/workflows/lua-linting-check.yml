@@ -1,0 +1,14 @@
+name: Lua Lint Check
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup rust and cargo
+        uses: moonrepo/setup-rust@v1
+      - name: Install Selene (with lsp support)
+        run: cargo install selene --locked
+      - name: Run Selene Check
+        run: selene .
