@@ -1,6 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  event = { "BufReadPost", "BufNewFile" },
+  event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   -- run ':Inspect' on any line to see what textobject that is
@@ -24,10 +24,10 @@ return {
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "<Enter>", -- set to `false` to disable one of the mappings
-        node_incremental = "<Enter>",
+        init_selection = '<Enter>', -- set to `false` to disable one of the mappings
+        node_incremental = '<Enter>',
         scope_incremental = false,
-        node_decremental = "<Backspace>",
+        node_decremental = '<Backspace>',
       },
     },
     ensure_installed = {

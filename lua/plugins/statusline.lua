@@ -5,4 +5,3 @@ return {
   -- empty opts table runs the require('mini.surround').setup() automatically
   opts = {},
 }
-

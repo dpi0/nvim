@@ -87,4 +87,3 @@ end
 -- vim.g.vimtex_view_method = "zathura"
 
 -- reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
-

@@ -5,7 +5,7 @@ return {
   -- },
   event = 'VeryLazy',
   opts = {
-    floating_window_scaling_factor = 1.0
+    floating_window_scaling_factor = 1.0,
   },
   keys = {
     {
@@ -20,8 +20,8 @@ return {
       desc = 'Resume the last yazi session',
     },
     {
-      "<leader>cw",
-      "<cmd>Yazi cwd<cr>",
+      '<leader>cw',
+      '<cmd>Yazi cwd<cr>',
       desc = "Open the file manager in nvim's working directory",
     },
     opts = {

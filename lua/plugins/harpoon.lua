@@ -1,10 +1,10 @@
 return {
   'cbochs/grapple.nvim',
   event = 'VeryLazy',
+  -- event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
     { 'nvim-tree/nvim-web-devicons', lazy = true },
   },
-  event = { 'BufReadPost', 'BufNewFile' },
   cmd = 'Grapple',
   opts = {
     scope = 'git', -- also try out "git_branch"
@@ -12,8 +12,8 @@ return {
     status = true,
   },
   keys = {
-    { '<leader>ni', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
-    { '<leader>na', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
+    { '<leader>bb', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
+    { '<leader>B', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
     -- { '<A-e>', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
 
     { '<A-1>', '<cmd>Grapple select index=1<cr>' },

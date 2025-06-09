@@ -22,5 +22,5 @@ return {
       -- Automatically reindent selection during linewise vertical move
       reindent_linewise = true,
     },
-  }
+  },
 }

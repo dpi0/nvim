@@ -1,5 +1,5 @@
 return {
-  "nvim-treesitter/nvim-treesitter-textobjects",
+  'nvim-treesitter/nvim-treesitter-textobjects',
   -- textobjects allows even better understanding of code
   -- and adds even more textobjects to the default treesitter
   -- list of new objects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects#built-in-textobjects
@@ -8,13 +8,13 @@ return {
   -- like loop, number, conditional etc
   -- taken directly
   -- https://github.com/jakobwesthoff/nvim-from-scratch/blob/series/02/lua/plugins/nvim-treesitter-textobjects.lua
-  event = { "BufReadPost", "BufNewFile" },
+  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
-    "nvim-treesitter/nvim-treesitter"
+    'nvim-treesitter/nvim-treesitter',
   },
   init = function()
-    local config = require'nvim-treesitter.configs';
-    config.setup({
+    local config = require 'nvim-treesitter.configs'
+    config.setup {
       textobjects = {
         select = {
           enable = true,
@@ -27,18 +27,18 @@ return {
             -- using the Xf you can now select functions
             -- like inside function using 'vif'
             -- or around function using 'vaf'
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
             -- for a class as well
-            ["ac"] = "@class.outer",
+            ['ac'] = '@class.outer',
             -- even for comments, 'vio' to select inside comment, 'vao' to select around comment
-            ["ao"] = "@comment.outer",
-            ["io"] = "@comment.inner",
+            ['ao'] = '@comment.outer',
+            ['io'] = '@comment.inner',
             -- You can optionally set descriptions to the mappings (used in the desc parameter of
             -- nvim_buf_set_keymap) which plugins like which-key display
-            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
             -- You can also use captures from other query groups like `locals.scm`
-            ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+            ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
           },
           -- You can choose the select mode (default is charwise 'v')
           --
@@ -71,13 +71,13 @@ return {
         swap = {
           enable = true,
           swap_next = {
-            ["<leader>so"] = {query="@parameter.inner", desc="Swap with next parameter"},
+            ['<leader>so'] = { query = '@parameter.inner', desc = 'Swap with next parameter' },
           },
           swap_previous = {
-            ["<leader>sO"] = "@parameter.inner",
+            ['<leader>sO'] = '@parameter.inner',
           },
         },
       },
-    });
-  end
+    }
+  end,
 }
