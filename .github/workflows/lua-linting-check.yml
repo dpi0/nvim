@@ -2,13 +2,28 @@ name: Lua Lint Check
 on: [push, pull_request]
 jobs:
   lint:
+    name: Lint Lua with Selene
     runs-on: ubuntu-latest
+    env:
+      REPO: Kampfkarren/selene
+      ARCHIVE: selene-linux.zip
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
-      - name: Setup rust and cargo
-        uses: moonrepo/setup-rust@v1
-      - name: Install Selene (with lsp support)
-        run: cargo install selene --locked
-      - name: Run Selene Check
+        with:
+          fetch-depth: 1
+      - name: Get latest Selene release version
+        id: get_version
+        run: |
+          json=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest")
+          version=$(echo "$json" | grep -m1 '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+      - name: Download and install Selene ${{ steps.get_version.outputs.version }}
+        run: |
+          VERSION=${{ steps.get_version.outputs.version }}
+          curl -fsSL "https://github.com/$REPO/releases/download/$VERSION/$ARCHIVE" -o selene.zip
+          unzip -q selene.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/selene
+          selene --version
+      - name: Run Selene Lint
         run: selene .
