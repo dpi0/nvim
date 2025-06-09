@@ -1,0 +1,7 @@
+std = "vim"
+
+[lints]
+shadowing = "allow"
+unscoped_variables = "warn"
+global_usage = "warn"
+mixed_table = "allow"
