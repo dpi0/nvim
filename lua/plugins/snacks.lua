@@ -16,6 +16,10 @@ return {
       },
     },
     input = {},
+    -- test with
+    -- :lua vim.notify("Test notification from command line")
+    notifier = {},
+    -- terminal = { enabled = true },
     picker = {
       enabled = false,
       -- In case you want to make sure that the score manipulation above works
@@ -86,14 +90,12 @@ return {
       },
       size = { width = 1, height = 1 },
     },
-    quickfile = { enabled = false, exclude = { 'latex' } },
     styles = {
       lazygit = {
         width = 0,
         height = 0,
       },
     },
-    -- terminal = { enabled = true },
   },
   keys = {
     {
@@ -107,14 +109,6 @@ return {
       silent = true,
       noremap = true,
     },
-    -- {
-    -- '<A-u>',
-    -- '<C-\\><C-n>:lua Snacks.lazygit(toggle)<CR>',
-    -- mode = 't',
-    -- desc = 'Toggle Lazygit (terminal)',
-    -- silent = true,
-    -- noremap = true,
-    -- },
     {
       '<leader>lg',
       function()
@@ -135,13 +129,6 @@ return {
       end,
       desc = 'Git Log',
     },
-    -- {
-    --   '<leader>rN',
-    --   function()
-    --     require('snacks').rename.rename_file()
-    --   end,
-    --   desc = 'Fast Rename Current File',
-    -- },
     {
       '<leader>go',
       function()
@@ -173,47 +160,5 @@ return {
       end,
       desc = 'Branches',
     },
-    -- {
-    --   '<leader><Space>',
-    --   function()
-    --     Snacks.picker.files {
-    --       finder = 'files',
-    --       format = 'file',
-    --       show_empty = true,
-    --       supports_live = true,
-    --       -- In case you want to override the layout for this keymap
-    --       -- layout = "vscode",
-    --     }
-    --   end,
-    --   desc = 'Find Files',
-    -- },
-    -- {
-    --   '<S-h>',
-    --   function()
-    --     Snacks.picker.buffers {
-    --       -- I always want my buffers picker to start in normal mode
-    --       on_show = function()
-    --         vim.cmd.stopinsert()
-    --       end,
-    --       finder = 'buffers',
-    --       format = 'buffer',
-    --       hidden = false,
-    --       unloaded = true,
-    --       current = true,
-    --       sort_lastused = true,
-    --       win = {
-    --         input = {
-    --           keys = {
-    --             ['d'] = 'bufdelete',
-    --           },
-    --         },
-    --         list = { keys = { ['d'] = 'bufdelete' } },
-    --       },
-    --       -- In case you want to override the layout for this keymap
-    --       -- layout = "ivy",
-    --     }
-    --   end,
-    --   desc = '[P]Snacks picker buffers',
-    -- },
   },
 }
