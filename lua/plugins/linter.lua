@@ -19,6 +19,7 @@ return {
       zsh = { 'shellcheck' },
       lua = { 'selene' },
       yaml = { 'yamllint' },
+      json = { 'jsonlint' },
       -- md = { 'markdownlint' },
       -- nix = { 'nix' },
       -- javascript = { 'eslint_d' },

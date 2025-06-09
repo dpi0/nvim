@@ -215,6 +215,9 @@ return {
       -- then hit C-f
       -- and your language like 'go'
       -- it'll will filter out all LSPs for that lang
+
+      -- find the list of all servers from
+      -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
       bashls = {},
       gopls = {},
       basedpyright = {},
@@ -223,6 +226,7 @@ return {
       yamlls = {},
       terraformls = {},
       docker_compose_language_service = {},
+      jsonls = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -290,6 +294,7 @@ return {
       'ansible-lint',
       'ruff',
       'yamllint', -- add a `.yamllint` file at root of project to configure linter's options
+      'jsonlint',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
