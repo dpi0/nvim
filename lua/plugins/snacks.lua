@@ -15,6 +15,7 @@ return {
         },
       },
     },
+    input = {},
     picker = {
       enabled = false,
       -- In case you want to make sure that the score manipulation above works
