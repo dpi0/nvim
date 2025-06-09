@@ -26,6 +26,7 @@ require('lazy').setup({
   require 'plugins.snacks',
   require 'plugins.yazi',
   require 'plugins.terminal',
+  require 'plugins.treesitter',
 }, {
   checker = { enabled = true },
   -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
