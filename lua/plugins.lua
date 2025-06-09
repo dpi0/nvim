@@ -45,6 +45,7 @@ local plugins = {
   require 'plugins.spectre',
   require 'plugins.sleuth',
   require 'plugins.diff',
+  -- require 'plugins.dashboard',
 }
 
 -- Conditionally add machine-specific plugins
