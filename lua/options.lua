@@ -11,7 +11,7 @@ vim.o.cmdheight = 1 -- Space in command line for messages
 vim.o.termguicolors = true -- Enable 24-bit colors
 vim.o.list = true -- Show whitespace characters
 vim.o.inccommand = 'split' -- -- Preview substitutions live, as you type!
-vim.o.listchars = "tab:» ,trail:·,nbsp:␣" -- Customize whitespace display
+vim.o.listchars = 'tab:. ,trail:·,nbsp:␣' -- Customize whitespace display
 vim.o.clipboard = 'unnamedplus' -- Sync system clipboard
 vim.o.mouse = 'a' -- Enable mouse support
 vim.o.whichwrap = 'bs<>[]hl' -- Allow moving across lines with arrow keys
@@ -87,3 +87,4 @@ end
 -- vim.g.vimtex_view_method = "zathura"
 
 -- reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
+

@@ -35,16 +35,18 @@ require('lazy').setup({
   require 'plugins.statusline',
   require 'plugins.which-key',
 }, {
-  checker = { enabled = true },
-  -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+    checker = { enabled = true },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
+        },
       },
     },
-  },
-})
+  })
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
