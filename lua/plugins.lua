@@ -33,6 +33,7 @@ require('lazy').setup({
   require 'plugins.treesitter',
   require 'plugins.treesitter-text-objects',
   require 'plugins.statusline',
+  require 'plugins.which-key',
 }, {
   checker = { enabled = true },
   -- -- https://github.com/adibhanna/minimal-vim/blob/main/lua/core/lazy.lua
