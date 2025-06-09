@@ -7,6 +7,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.cmd 'colorscheme kanagawa-wave'
+  end,
+})
+
+
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 --   pattern = "*",
 --   callback = function()
