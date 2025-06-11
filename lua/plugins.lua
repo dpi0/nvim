@@ -46,6 +46,7 @@ local plugins = {
   require 'plugins.sleuth',
   require 'plugins.diff',
   require 'plugins.bullets',
+  require 'plugins.outline',
   require 'plugins.headlines',
   -- require 'plugins.dashboard',
 }
