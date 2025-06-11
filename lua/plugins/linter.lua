@@ -20,7 +20,7 @@ return {
       lua = { 'selene' },
       yaml = { 'yamllint' },
       json = { 'jsonlint' },
-      -- md = { 'markdownlint' },
+      markdown = { 'markdownlint-cli2' },
       -- nix = { 'nix' },
       -- javascript = { 'eslint_d' },
     }

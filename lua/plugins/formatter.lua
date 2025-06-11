@@ -13,13 +13,14 @@ return {
       -- python = { "ruff" },
       python = { 'ruff_organize_imports', 'ruff_fix', 'ruff_format' },
       go = { 'goimports', 'gofmt' },
-      yaml = { 'yamlfmt', stop_after_first = true },
-      yml = { 'yamlfmt', stop_after_first = true },
+      yaml = { 'yamlfmt' },
+      -- yaml = { 'prettierd', 'prettier', stop_after_first = true },
       bash = { 'shfmt' },
       zsh = { 'shfmt' },
       sh = { 'shfmt' },
       json = { 'prettierd', 'prettier', stop_after_first = true },
       toml = { 'taplo' },
+      markdown = { 'mdformat', 'mdsf' },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- rust = { "rustfmt" },
       -- Conform will run the first available formatter

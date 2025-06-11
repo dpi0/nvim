@@ -55,9 +55,11 @@ return {
             -- https://github.com/jakobwesthoff/nvim-from-scratch/blob/1b05d7c403a5e7fa526064cf05634aedd4fc2ee9/lua/plugins/kanagawa.lua#L8
             -- https://www.youtube.com/watch?v=E4qXZv34NQQ&t=1619s
             -- better markdown code highlighting
+            --  https://github.com/rebelot/kanagawa.nvim/issues/207
             ['@markup.link.url.markdown_inline'] = { link = 'Special' }, -- (url)
             ['@markup.link.label.markdown_inline'] = { link = 'WarningMsg' }, -- [label]
             ['@markup.italic.markdown_inline'] = { link = 'Exception' }, -- *italic*
+            ['@markup.strong.markdown_inline'] = { link = 'WarningMsg' }, -- **bold**
             ['@markup.raw.markdown_inline'] = { link = 'String' }, -- `code`
             ['@markup.list.markdown'] = { link = 'Function' }, -- + list
             ['@markup.quote.markdown'] = { link = 'Error' }, -- > blockcode

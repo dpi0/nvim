@@ -45,6 +45,8 @@ local plugins = {
   require 'plugins.spectre',
   require 'plugins.sleuth',
   require 'plugins.diff',
+  require 'plugins.bullets',
+  require 'plugins.headlines',
   -- require 'plugins.dashboard',
 }
 

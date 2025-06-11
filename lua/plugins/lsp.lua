@@ -235,6 +235,7 @@ return {
       docker_compose_language_service = {},
       jsonls = {},
       taplo = {},
+      marksman = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -294,6 +295,8 @@ return {
       'goimports',
       'yamlfmt',
       'shfmt',
+      'mdformat',
+      'mdsf',
 
       -- linters
       'golangci-lint',
@@ -303,6 +306,7 @@ return {
       'ruff',
       'yamllint', -- add a `.yamllint` file at root of project to configure linter's options
       'jsonlint',
+      'markdownlint-cli2',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
