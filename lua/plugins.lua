@@ -48,6 +48,7 @@ local plugins = {
   require 'plugins.bullets',
   require 'plugins.outline',
   require 'plugins.headlines',
+  require 'plugins.treesitter-context',
   -- require 'plugins.dashboard',
 }
 
