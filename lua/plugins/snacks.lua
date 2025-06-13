@@ -18,7 +18,14 @@ return {
     input = {},
     -- test with
     -- :lua vim.notify("Test notification from command line")
-    notifier = {},
+    notifier = {
+      timeout = 3000, -- default timeout in ms
+      width = { min = 60, max = 0.9 },
+      height = { min = 1, max = 0.6 },
+      -- editor margin to keep free. tabline and statusline are taken into account automatically
+      margin = { top = 0, right = 1, bottom = 0 },
+      padding = true, -- add 1 cell of left/right padding to the notification window
+    },
     -- terminal = { enabled = true },
     picker = {
       enabled = false,
