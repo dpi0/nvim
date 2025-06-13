@@ -109,7 +109,7 @@ return {
       -- '<A-u>',
       '<leader>z',
       function()
-        Snacks.lazygit { size = { width = 1, height = 1 } }
+        require('snacks').lazygit { size = { width = 1, height = 1 } }
       end,
       mode = 'n',
       desc = 'Toggle Lazygit (normal)',
@@ -126,7 +126,7 @@ return {
     {
       '<leader>gl',
       function()
-        Snacks.picker.git_log {
+        require('snacks').picker.git_log {
           finder = 'git_log',
           format = 'git_log',
           preview = 'git_show',
@@ -146,14 +146,14 @@ return {
     {
       '<leader>.',
       function()
-        Snacks.scratch()
+        require('snacks').scratch()
       end,
       desc = 'Toggle Scratch Buffer',
     },
     {
       '<leader>>',
       function()
-        Snacks.scratch.select()
+        require('snacks').scratch.select()
       end,
       desc = 'Select Scratch Buffer',
     },
@@ -161,7 +161,7 @@ return {
     {
       '<leader>gb',
       function()
-        Snacks.picker.git_branches {
+        require('snacks').picker.git_branches {
           layout = 'select',
         }
       end,
