@@ -3,7 +3,17 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   config = function()
-    require('fzf-lua').register_ui_select()
+    local fzf = require 'fzf-lua'
+    -- local actions = require('fzf-lua').actions
+    fzf.register_ui_select()
+    fzf.setup {
+      keymap = {
+        builtin = {
+          ['<C-d>'] = 'preview-page-down',
+          ['<C-u>'] = 'preview-page-up',
+        },
+      },
+    }
   end,
   opts = {
     previewers = {
@@ -54,12 +64,6 @@ return {
       git_icons = true,
       file_icons = true,
       color_icons = true,
-    },
-    keymap = {
-      builtin = {
-        ['<S-j>'] = 'preview-page-down',
-        ['<S-k>'] = 'preview-page-up',
-      },
     },
   },
   keys = (function()
