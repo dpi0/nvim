@@ -64,7 +64,7 @@ if hostname == 'titan' then
 end
 
 require('lazy').setup(plugins, {
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   performance = {
     rtp = {
       disabled_plugins = {
