@@ -32,8 +32,6 @@ local plugins = {
   require 'plugins.mini-move',
   require 'plugins.mini-pairs',
   require 'plugins.mini-cursorword',
-  require 'plugins.treesitter',
-  require 'plugins.treesitter-text-objects',
   require 'plugins.statusline',
   require 'plugins.which-key',
   require 'plugins.cmp',
@@ -60,6 +58,8 @@ if hostname == 'titan' then
     require 'plugins.linter',
     require 'plugins.mini-snippets',
     require 'plugins.activity-watcher',
+    require 'plugins.treesitter',
+    require 'plugins.treesitter-text-objects',
   })
 end
 
