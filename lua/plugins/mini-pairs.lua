@@ -26,6 +26,8 @@ return {
       ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
       ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
       ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+      ['*'] = { action = 'closeopen', pair = '**', neigh_pattern = '[^\\].', register = { cr = false } },
+      ['<'] = { action = 'closeopen', pair = '<>', neigh_pattern = '[^\\].', register = { cr = false } },
     },
   },
 }
@@ -33,7 +35,5 @@ return {
 -- return {
 --   'm4xshen/autoclose.nvim',
 --   event = { 'InsertEnter' },
---   config = function()
---     require('autoclose').setup {}
---   end,
+--   opts = {},
 -- }

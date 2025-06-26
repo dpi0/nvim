@@ -47,6 +47,7 @@ return {
         preset = 'default',
         ['<Enter>'] = { 'accept', 'fallback' },
         ['<A-n>'] = { 'accept', 'fallback' },
+        ['<A-j>'] = { 'accept', 'fallback' },
       },
 
       appearance = {

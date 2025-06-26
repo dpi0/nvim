@@ -12,8 +12,8 @@ return {
     status = true,
   },
   keys = {
-    { '<leader>ni', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
-    { '<leader>B', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
+    { '<leader>j', '<cmd>Grapple toggle_tags<cr>', desc = 'Toggle tags menu' },
+    { '<leader>p', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
     -- { '<A-e>', '<cmd>Grapple toggle<cr>', desc = 'Tag a file' },
 
     { '<A-1>', '<cmd>Grapple select index=1<cr>' },

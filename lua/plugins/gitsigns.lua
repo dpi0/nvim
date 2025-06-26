@@ -54,7 +54,7 @@ return {
       map('n', '<leader>bB', gs.toggle_current_line_blame, 'Toggle line blame')
 
       -- map('n', '<leader>bd', gs.diffthis, 'Diff this')
-      map('n', '<leader>bd', toggle_diff, 'Toggle diff split')
+      map('n', '<leader>B', toggle_diff, 'Toggle diff split')
       map('n', '<leader>bwd', gs.toggle_word_diff)
       map('n', '<leader>bD', function()
         gs.diffthis '~'
