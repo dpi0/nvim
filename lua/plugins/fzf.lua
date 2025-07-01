@@ -105,7 +105,7 @@ return {
     -- https://github.com/ibhagwan/fzf-lua?tab=readme-ov-file#highlight-groups
     vim.api.nvim_set_hl(0, 'FzfLuaBorder', { fg = '#54546D' })
     vim.api.nvim_set_hl(0, 'FzfLuaDirPart', { fg = '#8DA2C2', italic = true })
-    vim.api.nvim_set_hl(0, 'FzfLuaFilePart', { fg = '#90C98E', bold = true })
+    vim.api.nvim_set_hl(0, 'FzfLuaFilePart', { fg = '#7CB879', bold = true })
 
     local fzf = require 'fzf-lua'
     fzf.register_ui_select()

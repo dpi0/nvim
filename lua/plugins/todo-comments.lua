@@ -6,9 +6,11 @@ return {
   opts = {
     colors = {
       error = { 'DiagnosticError', 'ErrorMsg', '#DC2626' },
-      danger = { 'DiagnosticError', 'ErrorMsg', '#ff0000' },
-      warning = { 'DiagnosticWarn', 'WarningMsg', '#FBBF24' },
-      info = { 'DiagnosticInfo', '#2563EB' },
+      danger = { 'DiagnosticError', 'ErrorMsg', '#F50008' },
+      warning = { '#FFF200' },
+      info = { '#88CEEB' },
+      note = { '#3FE1D1' },
+      todo = { '#FFAC1C' },
       hint = { 'DiagnosticHint', '#10B981' },
       default = { 'Identifier', '#7C3AED' },
       test = { 'Identifier', '#FF00FF' },
@@ -20,12 +22,12 @@ return {
         alt = { 'FIXME', 'BUG', 'FIXIT', 'ISSUE' }, -- a set of other keywords that all map to this FIX keywords
         -- signs = false, -- configure signs for some keywords individually
       },
-      TODO = { icon = ' ', color = 'info' },
+      TODO = { icon = ' ', color = 'todo' },
+      NOTE = { icon = ' ', color = 'note' },
+      INFO = { icon = ' ', color = 'info' },
       HACK = { icon = ' ', color = 'warning' },
       WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
       PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
-      NOTE = { icon = ' ', color = 'hint' },
-      INFO = { icon = ' ', color = 'info' },
       TEST = { icon = '⏲ ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
       DANGER = { icon = '󰒡 ', color = 'danger', alt = { 'CAUTION' } },
     },

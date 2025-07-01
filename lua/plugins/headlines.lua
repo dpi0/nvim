@@ -21,7 +21,7 @@ return {
       { fg = '#FF6C6B', bg = '#2A1C1C' }, -- red
       { fg = '#98BE65', bg = '#1F2A1C' }, -- green
       { fg = '#ECBE7B', bg = '#2A251C' }, -- yellow
-      { fg = '#51AFEF', bg = '#1C2430' }, -- blue
+      { fg = '#37AEFF', bg = '#1C2430' }, -- blue
       { fg = '#C678DD', bg = '#2A1C2A' }, -- purple
       { fg = '#46D9FF', bg = '#1A2A2F' }, -- cyan
     }
