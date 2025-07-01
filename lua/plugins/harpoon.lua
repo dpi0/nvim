@@ -7,7 +7,7 @@ return {
   },
   cmd = 'Grapple',
   opts = {
-    scope = 'git', -- also try out "git_branch"
+    scope = 'cwd', -- global, git, git_branch, cwd, lsp
     icons = true, -- setting to "true" requires "nvim-web-devicons"
     status = true,
   },
