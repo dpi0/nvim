@@ -50,6 +50,7 @@ local plugins = {
   -- require 'plugins.dashboard',
   require 'plugins.dial',
   require 'plugins.substitute',
+  require 'plugins.indent',
 }
 
 -- Conditionally add machine-specific plugins
