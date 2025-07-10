@@ -137,7 +137,7 @@ return {
       desc = 'Git Log',
     },
     {
-      '<leader>go',
+      '<leader>gO',
       function()
         require('snacks').gitbrowse()
       end,
