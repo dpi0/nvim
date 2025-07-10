@@ -48,6 +48,7 @@ vim.o.foldmethod = 'expr' -- https://reddit.dpi0.cloud/r/neovim/comments/1behv16
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- :h vim.treesitter.foldexpr()
 vim.o.foldtext = '' -- ref: https://github.com/neovim/neovim/pull/20750
 vim.o.foldlevelstart = 99 -- Open all folds by default, zm is not available
+vim.o.foldlevel = 1 -- https://scribe.rip/better-kubernetes-yaml-editing-with-neo-vim-af7da9a1b150
 vim.g.have_nerd_font = true -- Enable NERD font compatibility
 vim.o.backspace = 'indent,eol,start' -- Allow backspacing over everything
 
