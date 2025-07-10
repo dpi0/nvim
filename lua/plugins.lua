@@ -48,6 +48,7 @@ local plugins = {
   require 'plugins.headlines',
   require 'plugins.treesitter-context',
   -- require 'plugins.dashboard',
+  require 'plugins.substitute',
 }
 
 -- Conditionally add machine-specific plugins
