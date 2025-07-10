@@ -52,6 +52,7 @@ local plugins = {
   require 'plugins.git-conflict',
   require 'plugins.substitute',
   require 'plugins.indent',
+  -- require 'plugins.copilot',
   require 'plugins.git-fugitive',
 }
 
