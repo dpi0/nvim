@@ -30,7 +30,7 @@ local plugins = {
   require 'plugins.mini-surround',
   require 'plugins.mini-ai',
   require 'plugins.mini-move',
-  require 'plugins.mini-pairs',
+  require 'plugins.autopairs',
   require 'plugins.mini-cursorword',
   require 'plugins.statusline',
   require 'plugins.which-key',
