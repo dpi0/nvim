@@ -1,20 +1,14 @@
 return {
-  -- Main LSP Configuration
   -- https://github.com/jakobwesthoff/nvim-from-scratch/blob/session/04/lua/plugins/lsp.lua#L11
+  'neovim/nvim-lspconfig',
+  event = 'VeryLazy', -- CAUTION: when using VeryLazy event, mason-tool-installer will not automatically install your tools on launch
+  -- event = 'BufEnter',
   -- WARNING: for some reason currently LSP seems to only be active when neovim is launched with `nvim .`
   -- `nvim FILENAME` doesn't trigger LSP for current session, checked with `:LspInfo`
-  'neovim/nvim-lspconfig',
-  -- event = 'VeryLazy',
-  event = 'BufEnter',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for Neovim
-    -- Mason must be loaded before its dependents so we need to set it up here.
-    -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
     { 'williamboman/mason.nvim', event = 'VeryLazy', opts = {} },
     { 'williamboman/mason-lspconfig.nvim', event = 'VeryLazy' },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-    -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
   },
   keys = {
@@ -34,84 +28,30 @@ return {
     },
   },
   config = function()
-    -- Brief aside: **What is LSP?**
-    --
-    -- LSP is an initialism you've probably heard, but might not understand what it is.
-    --
-    -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-    -- and language tooling communicate in a standardized fashion.
-    --
-    -- In general, you have a "server" which is some tool built to understand a particular
-    -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-    -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-    -- processes that communicate with some "client" - in this case, Neovim!
-    --
-    -- LSP provides Neovim with features like:
-    --  - Go to definition
-    --  - Find references
-    --  - Autocompletion
-    --  - Symbol Search
-    --  - and more!
-    --
-    -- Thus, Language Servers are external tools that must be installed separately from
-    -- Neovim. This is where `mason` and related plugins come into play.
-    --
-    -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-    -- and elegantly composed help section, `:help lsp-vs-treesitter`
+    local mason_tool_installer = require 'mason-tool-installer'
+    local mason_lspconfig = require 'mason-lspconfig'
+    local fzf = require 'fzf-lua'
 
-    --  This function gets run when an LSP attaches to a particular buffer.
-    --    That is to say, every time a new file is opened that is associated with
-    --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-    --    function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
-        -- NOTE: Remember that Lua is a real programming language, and as such it is possible
-        -- to define small helper and utility functions so you don't have to repeat yourself.
-        --
-        -- In this case, we create a function that lets us more easily define mappings specific
-        -- for LSP related items. It sets the mode, buffer and description for us each time.
-        local map = function(keys, func, desc, mode)
+        local bind = function(keys, func, desc, mode)
           mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
         end
 
-        -- Jump to the definition of the word under your cursor.
-        --  This is where a variable was first declared, or where a function is defined, etc.
-        --  To jump back, press <C-t>.
-        map('gd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
-
-        -- Find references for the word under your cursor.
-        map('gr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
-
-        -- Jump to the implementation of the word under your cursor.
-        --  Useful when your language has ways of declaring types without an actual implementation.
-        map('gI', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
-
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
-
-        -- Fuzzy find all the symbols in your current document.
-        --  Symbols are things like variables, functions, types, etc.
-        map('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
-
-        -- Fuzzy find all the symbols in your current workspace.
-        --  Similar to document symbols, except searches over your entire project.
-        map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
-
-        -- Rename the variable under your cursor.
-        --  Most Language Servers support renaming across files, etc.
-        map('<leader>cr', vim.lsp.buf.rename, '[R]e[n]ame')
-
-        -- Execute a code action, usually your cursor needs to be on top of an error
-        -- or a suggestion from your LSP for this to activate.
-        -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-
-        -- WARN: This is not Goto Definition, this is Goto Declaration.
-        --  For example, in C this would take you to the header.
-        map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        -- NOTE: these fzf.X binds are for buffer = event.buf
+        -- buffer = event.buf ensures the keymap is only active in the buffer where the LSP client just attached
+        -- Removing it means the keymaps are created globally (even when LSP is not attached)
+        bind('<leader>ca', vim.lsp.buf.code_action, 'LSP: Code Actions (Normal/Visual)', { 'n', 'x' })
+        bind('gdd', fzf.lsp_definitions, 'LSP: Go to Definition')
+        bind('gds', fzf.lsp_document_symbols, 'LSP: Document Symbol Outline')
+        bind('gD', vim.lsp.buf.declaration, 'LSP: Go to Declaration') -- rarely used
+        bind('grr', fzf.lsp_references, 'LSP: Find References')
+        bind('grn', vim.lsp.buf.rename, 'LSP: Rename Symbol')
+        bind('gri', fzf.lsp_implementations, 'LSP: Go to Implementation')
+        bind('grd', fzf.lsp_typedefs, 'LSP: Go to Type Definition')
+        -- bind('<leader>ws', fzf.lsp_live_workspace_symbols, 'LSP: Live Workspace Symbol Search')
 
         -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
         ---@param client vim.lsp.Client
@@ -162,7 +102,7 @@ return {
         --
         -- This may be unwanted, since they displace some of your code
         if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-          map('<leader>th', function()
+          bind('<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, '[T]oggle Inlay [H]ints')
         end
@@ -207,18 +147,8 @@ return {
     -- explanation for capabilities: https://youtu.be/GKIxgCcKAq4
     local original_capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities = require('blink.cmp').get_lsp_capabilities(original_capabilities)
-
-    -- Enable the following language servers
-    --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-    --
-    --  Add any additional override configuration in the following tables. Available keys are:
-    --  - cmd (table): Override the default command used to start the server
-    --  - filetypes (table): Override the default list of associated filetypes for the server
-    --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-    --  - settings (table): Override the default settings passed when initializing the server.
-    --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- find the list of servers with :Mason or <leader>M
+      -- INFO: find the list of servers with :Mason or <leader>M
       -- then hit C-f
       -- and your language like 'go'
       -- it'll will filter out all LSPs for that lang
@@ -230,21 +160,26 @@ return {
       basedpyright = {},
       dockerls = {},
       ansiblels = {},
-      yamlls = {},
+      yamlls = {
+        schemas = {
+          -- kubernetes = 'k8s-*.yaml', -- only activate this schema if the file name has this format
+          kubernetes = '*.yml', -- only activate this schema if the file name has this format
+          ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
+          ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
+          ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/**/*.{yml,yaml}',
+          ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
+          ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
+          ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
+          ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}',
+        },
+      },
       terraformls = {},
       docker_compose_language_service = {},
       jsonls = {},
       taplo = {},
       marksman = {},
-      -- rust_analyzer = {},
-      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-      --
-      -- Some languages (like typescript) have entire language plugins that can be useful:
-      --    https://github.com/pmizio/typescript-tools.nvim
-      --
-      -- But for many setups, the LSP (`ts_ls`) will work just fine
-      -- ts_ls = {},
-      --
+      nil_ls = {},
+      -- vale_ls = {}, -- for strict writing https://vale.sh/docs/vale-ini
 
       lua_ls = {
         -- cmd = { ... },
@@ -262,27 +197,14 @@ return {
       },
     }
 
-    -- Ensure the servers and tools above are installed
-    --
-    -- To check the current status of installed tools and/or manually install
-    -- other tools, you can run
-    --    :Mason
-    --
-    -- You can press `g?` for help in this menu.
-    --
-    -- `mason` had to be setup earlier: to configure its options see the
-    -- `dependencies` table for `nvim-lspconfig` above.
-    --
-    -- You can add other tools here that you want Mason to install
-    -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      -- uses mason-tool-installer to install tools other than LSPs to be present
+      -- NOTE: uses mason-tool-installer to install tools other than LSPs to be present
       -- mason-tool-installer just uses Mason to get the packages
       -- again the list of valid package names can be seen using
       -- command :Mason or <leader>M
       -- hit C-f and search for your language
-      -- NOTE: anything other than LSPs from mason-tool-installer
+      -- INFO: anything other than LSPs from mason-tool-installer
       --
       -- cAUTION: the event for nvim-lspconfig should be 'BufEnter' for mason-tool-installer to install tools on startup
       -- otherwise if event = 'VeryLazy' is set it doesn't install them on boot automatically
@@ -296,7 +218,13 @@ return {
       'yamlfmt',
       'shfmt',
       'mdformat',
-      'mdsf',
+      'cbfmt', -- format code blocks in .md using .cbfmt.toml file
+      -- 'mdsf', -- same as above
+      -- 'terraform_fmt',
+      -- 'autocorrect', -- correct spaces, words, and punctuations
+      -- 'codespell', -- Check code for common misspellings
+      -- 'js-beautify', -- general formatter for html, css and js
+      -- 'tex-fmt', -- LaTeX
 
       -- linters
       'golangci-lint',
@@ -307,10 +235,13 @@ return {
       'yamllint', -- add a `.yamllint` file at root of project to configure linter's options
       'jsonlint',
       'markdownlint-cli2',
+      'djlint', -- HTML linter and formatter
+      -- 'vale', -- for text/writing
+      -- 'stylelint', -- css linter
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+    mason_tool_installer.setup { ensure_installed = ensure_installed }
 
-    require('mason-lspconfig').setup {
+    mason_lspconfig.setup {
       ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
       automatic_installation = false,
       handlers = {
