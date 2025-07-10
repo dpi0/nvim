@@ -49,6 +49,7 @@ local plugins = {
   require 'plugins.treesitter-context',
   -- require 'plugins.dashboard',
   require 'plugins.dial',
+  require 'plugins.git-conflict',
   require 'plugins.substitute',
   require 'plugins.indent',
 }
