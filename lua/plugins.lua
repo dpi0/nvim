@@ -48,6 +48,7 @@ local plugins = {
   require 'plugins.headlines',
   require 'plugins.treesitter-context',
   -- require 'plugins.dashboard',
+  require 'plugins.dial',
   require 'plugins.substitute',
 }
 
