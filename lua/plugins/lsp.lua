@@ -225,6 +225,7 @@ return {
       -- 'codespell', -- Check code for common misspellings
       -- 'js-beautify', -- general formatter for html, css and js
       -- 'tex-fmt', -- LaTeX
+      'terraform',
 
       -- linters
       'golangci-lint',
@@ -238,6 +239,7 @@ return {
       'djlint', -- HTML linter and formatter
       -- 'vale', -- for text/writing
       -- 'stylelint', -- css linter
+      'tflint',
     })
     mason_tool_installer.setup { ensure_installed = ensure_installed }
 

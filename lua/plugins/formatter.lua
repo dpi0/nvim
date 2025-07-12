@@ -24,7 +24,7 @@ return {
       -- markdown = { 'mdformat', 'cbfmt' },
       markdown = { 'mdformat' },
       nix = { 'alejandra' },
-      -- terraform = { 'terraform_fmt' },
+      terraform = { 'terraform_fmt' },
       -- You can customize some of the format options for the filetype (:help conform.format)
       -- rust = { "rustfmt" },
       -- Conform will run the first available formatter
