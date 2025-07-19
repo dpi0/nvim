@@ -55,6 +55,7 @@ local plugins = {
   -- require 'plugins.copilot',
   require 'plugins.git-fugitive',
   require 'plugins.flash',
+  require 'plugins.rainbow-brackets',
 }
 
 -- Conditionally add machine-specific plugins
