@@ -56,6 +56,7 @@ local plugins = {
   require 'plugins.git-fugitive',
   require 'plugins.flash',
   require 'plugins.rainbow-brackets',
+  require 'plugins.matchup',
 }
 
 -- Conditionally add machine-specific plugins
