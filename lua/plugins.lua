@@ -54,6 +54,7 @@ local plugins = {
   require 'plugins.indent',
   -- require 'plugins.copilot',
   require 'plugins.git-fugitive',
+  require 'plugins.flash',
 }
 
 -- Conditionally add machine-specific plugins
