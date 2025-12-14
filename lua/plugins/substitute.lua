@@ -59,36 +59,12 @@ return {
       desc = 'Substitute word (range)',
     },
     {
-      'nx',
-      function()
-        require('substitute.exchange').operator()
-      end,
-      mode = 'n',
-      desc = 'Exchange with motion',
-    },
-    {
-      'nxx',
-      function()
-        require('substitute.exchange').line()
-      end,
-      mode = 'n',
-      desc = 'Exchange line',
-    },
-    {
       'X',
       function()
         require('substitute.exchange').visual()
       end,
       mode = 'x',
       desc = 'Exchange selection',
-    },
-    {
-      'nxc',
-      function()
-        require('substitute.exchange').cancel()
-      end,
-      mode = 'n',
-      desc = 'Cancel exchange',
     },
   },
 }
