@@ -7,18 +7,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- vim.api.nvim_create_autocmd("ColorScheme", {
---   pattern = "*",
---   callback = function()
---     vim.cmd([[
---       highlight Normal      guibg=NONE ctermbg=NONE
---       highlight NormalNC    guibg=NONE ctermbg=NONE
---       highlight SignColumn  guibg=NONE ctermbg=NONE
---       highlight VertSplit   guibg=NONE ctermbg=NONE
---       highlight StatusLine  guibg=NONE ctermbg=NONE
---       highlight LineNr      guibg=NONE ctermbg=NONE
---       highlight Folded      guibg=NONE ctermbg=NONE
---       highlight EndOfBuffer guibg=NONE ctermbg=NONE
---     ]])
---   end
--- })
+-- https://gist.github.com/smnatale/692ac4f256d5f19fbcbb78fe32c87604
+-- Do not continue the comment on next line
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('no_auto_comment', {}),
+  callback = function()
+    vim.opt_local.formatoptions:remove { 'c', 'r', 'o' }
+  end,
+})
+
+-- Set filetype for certain file names so that the Language servers can recognize them
+local function set_filetype(pattern, filetype)
+  vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = pattern,
+    command = 'set filetype=' .. filetype,
+  })
+end
+
+set_filetype({ 'compose.yaml' }, 'yaml.docker-compose')
+-- set_filetype({ 'playbook.yaml', 'playbook.yml' }, 'yaml.ansible') -- Using mfussenegger/nvim-ansible for this
