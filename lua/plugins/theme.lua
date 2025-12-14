@@ -39,6 +39,8 @@ return {
             -- add bg to only Lazy UI
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = 'none', fg = theme.ui.fg_dim },
+            StatusLine = { bg = 'none', fg = theme.ui.fg },
+            StatusLineNC = { bg = 'none', fg = theme.ui.fg_dim },
 
             -- https://github.com/rebelot/kanagawa.nvim#dark-completion-popup-menu
             Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
