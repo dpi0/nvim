@@ -1,15 +1,10 @@
 return {
   'mfussenegger/nvim-lint',
-  -- event = {
-  --   'BufReadPre',
-  --   'BufNewFile',
-  -- },
+  event = 'BufReadPost',
   config = function()
     local lint = require 'lint'
-
+    -- https://github.com/mfussenegger/nvim-lint#available-linters
     lint.linters_by_ft = {
-      -- list of linters from
-      -- https://github.com/mfussenegger/nvim-lint#available-linters
       python = { 'ruff' },
       go = { 'golangcilint' },
       terraform = { 'tflint' },
@@ -18,15 +13,14 @@ return {
       sh = { 'shellcheck' },
       zsh = { 'shellcheck' },
       lua = { 'selene' },
-      yaml = { 'yamllint', 'djlint' },
+      yaml = { 'yamllint' },
+      yml = { 'ansible_lint' },
       json = { 'jsonlint' },
-      -- markdown = { 'markdownlint-cli2', 'vale' },
-      markdown = { 'markdownlint-cli2' },
       html = { 'djlint' },
       j2 = { 'djlint' },
       nix = { 'nix' },
-      -- nix = { 'nix' },
-      -- javascript = { 'eslint_d' },
+      ruby = { 'ruby' },
+      -- markdown = { 'rumdl' },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
@@ -37,9 +31,5 @@ return {
         lint.try_lint()
       end,
     })
-
-    vim.keymap.set('n', '<leader>li', function()
-      lint.try_lint()
-    end, { desc = 'Trigger linting for current file' })
   end,
 }
