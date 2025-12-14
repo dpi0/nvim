@@ -11,7 +11,7 @@ return {
       mode = 'n',
     },
     {
-      '<leader>sw',
+      '<leader>fw',
       function()
         require('spectre').open_visual { select_word = true }
       end,
@@ -19,7 +19,7 @@ return {
       mode = 'n',
     },
     {
-      '<leader>sw',
+      '<leader>fw',
       function()
         vim.cmd 'normal! <Esc>'
         require('spectre').open_visual()
@@ -28,7 +28,7 @@ return {
       mode = 'v',
     },
     {
-      '<leader>sF',
+      '<leader>fF',
       function()
         require('spectre').open_file_search { select_word = true }
       end,
