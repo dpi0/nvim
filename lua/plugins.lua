@@ -17,10 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   require 'plugins.theme', -- color scheme (currently kanagawa)
-  require 'plugins.fzf', -- /ibhagwan/fzf-lua ❤️ ⭐ (find anything - files, binds, words)
+  require 'plugins.fzf', -- ibhagwan/fzf-lua ❤️ ⭐ (find anything - files, binds, words)
   require 'plugins.oil', -- stevearc/oil.nvim ⭐ (manage files)
   require 'plugins.flash', -- folke/flash.nvim ⭐ (go anywhere in visible buffer)
-  require 'plugins.harpoon', -- cbochs/grapple.nvim ⭐ (better than ThePrimeagen/harpoon/tree/harpoon2 - quickly goto to set files)
+  require 'plugins.harpoon', -- ThePrimeagen/harpoon/tree/harpoon2 ⭐ (quickly goto to set files)
   require 'plugins.terminal', -- dpi0/fim.nvim ⭐ (floating terminal)
   require 'plugins.lsp', -- neovim/nvim-lspconfig and mason-org/mason.nvim (LSP and Mason plugin manager)
   require 'plugins.formatter', -- stevearc/conform.nvim (formatter)
