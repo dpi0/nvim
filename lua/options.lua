@@ -5,7 +5,7 @@ vim.o.numberwidth = 4 -- Set number column width
 vim.o.cursorline = true -- Highlight current line
 vim.o.wrap = false -- Disable line wrapping
 vim.o.linebreak = true -- Prevent word splitting when wrapped
-vim.o.colorcolumn = '80' -- Highlight column at 80 chars
+vim.o.colorcolumn = '100' -- Highlight column at 80 chars
 vim.o.showmode = false -- Hide mode info (redundant with statusline)
 vim.o.cmdheight = 1 -- Space in command line for messages
 vim.o.termguicolors = true -- Enable 24-bit colors
@@ -17,6 +17,7 @@ vim.o.mouse = 'a' -- Enable mouse support
 vim.o.whichwrap = 'bs<>[]hl' -- Allow moving across lines with arrow keys
 vim.o.autoindent = true -- Copy indentation from current line
 vim.o.smartindent = true -- Smarter indentation
+vim.o.copyindent = true -- Smarter indentation
 vim.o.breakindent = true -- Enable break indent
 vim.o.expandtab = true -- Convert tabs to spaces
 vim.o.shiftwidth = 2 -- Spaces per indentation level
@@ -32,9 +33,9 @@ vim.o.updatetime = 50 -- Faster update time (default: 4000ms)
 vim.o.timeoutlen = 500 -- Faster key sequence timeout (default: 1000ms)
 vim.o.swapfile = false -- Disable swapfile
 vim.o.backup = false -- Disable backup files
-vim.o.writebackup = false -- Prevent editing files that are open elsewhere
+vim.o.writebackup = true -- Prevent editing files that are open elsewhere
 vim.o.undofile = true -- Enable persistent undo
-vim.o.fileencoding = 'utf-8' -- Set file encoding
+vim.o.fileencoding = 'UTF-8' -- Set file encoding
 vim.o.conceallevel = 0 -- Show markdown code blocks
 vim.o.showtabline = 0 -- Show tab line
 vim.o.pumheight = 10 -- Popup menu height
@@ -44,17 +45,24 @@ vim.o.incsearch = true -- Show incremental matches
 vim.o.hlsearch = true -- Highlight search results
 vim.o.spell = true -- Enable spell checking
 vim.o.spelllang = 'en_us' -- Set spell check language
-vim.o.foldmethod = 'expr' -- https://reddit.dpi0.cloud/r/neovim/comments/1behv16/help_with_configuring_this_plugin_nvimufo/
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- :h vim.treesitter.foldexpr()
-vim.o.foldtext = '' -- ref: https://github.com/neovim/neovim/pull/20750
+-- vim.o.foldmethod = 'expr' -- https://reddit.dpi0.cloud/r/neovim/comments/1behv16/help_with_configuring_this_plugin_nvimufo/
+-- vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()' -- :h vim.treesitter.foldexpr()
+-- vim.o.foldtext = '' -- ref: https://github.com/neovim/neovim/pull/20750
+-- vim.o.foldcolumn = '1'
+-- vim.o.foldlevel = 1 -- https://scribe.rip/better-kubernetes-yaml-editing-with-neo-vim-af7da9a1b150
+-- vim.o.foldenable = true
+vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99 -- Open all folds by default, zm is not available
-vim.o.foldlevel = 1 -- https://scribe.rip/better-kubernetes-yaml-editing-with-neo-vim-af7da9a1b150
 vim.g.have_nerd_font = true -- Enable NERD font compatibility
 vim.o.backspace = 'indent,eol,start' -- Allow backspacing over everything
+vim.o.autoread = true -- Make Neovim refresh buffer automatically when file content changes
+vim.g.matchup_treesitter_disabled = { 'markdown' } -- FIX: markdown startup slow https://github.com/andymass/vim-matchup/issues/416#issuecomment-3435501504
+-- vim.opt.laststatus = 0 -- Hide statusline
+-- vim.opt.iskeyword:append '-' -- Treat dash as part of word
 
 -- NEOVIDE Configuration
 if vim.g.neovide then
-  vim.o.guifont = 'JetBrainsMono NF:h12'
+  vim.o.guifont = 'JetBrainsMono NF:h11'
   vim.g.neovide_scale_factor = 1.0
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
@@ -63,28 +71,13 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_length = 0.1
   vim.g.neovide_refresh_rate = 120
   vim.g.neovide_no_idle = true
-  vim.g.neovide_fullscreen = false
+  vim.g.neovide_fullscreen = true
   vim.g.neovide_remember_window_size = false
   vim.g.neovide_padding_top = 0
   vim.g.neovide_padding_bottom = 0
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
   vim.g.neovide_opacity = 0.8
-  local map = vim.keymap.set
-  map('n', '<C-s>', ':w<CR>') -- Save
-  map('v', '<C-c>', '"+y') -- Copy
-  map('n', '<C-v>', '"+P') -- Paste (normal mode)
-  map('v', '<C-v>', '"+P') -- Paste (visual mode)
-  map('i', '<C-v>', '<ESC>l"+Pli') -- Paste (insert mode)
-  map('c', '<C-v>', '<C-R>+') -- Paste (command mode)
+  vim.keymap.set('i', '<C-v>', '<C-R>+', { silent = true })
+  vim.keymap.set('t', '<C-v>', '<C-\\><C-o>"+p', { silent = true })
 end
-
--- VIMTEX Configuration
--- Ensure VimTeX loads correctly
--- vim.cmd("filetype plugin indent on")
--- vim.cmd("syntax enable")
-
--- -- Set PDF viewer
--- vim.g.vimtex_view_method = "zathura"
-
--- reference: https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
