@@ -194,7 +194,7 @@ return {
       fzf.files { cwd = '/' }
     end, 'Search root / directory')
     bind('<leader>fh', function()
-      fzf.files { cwd = os.getenv 'home', hidden = true }
+      fzf.files { cwd = os.getenv 'HOME', hidden = true }
     end, 'Search $HOME directory')
     bind('<leader>fm', function()
       fzf.files { cwd = '$HOME/notes' }
