@@ -60,7 +60,18 @@ return {
     vim.keymap.set('n', '<leader>M', '<cmd>Mason<CR>', { desc = 'Mason ⚙️' })
     vim.keymap.set('n', '<leader>lsp', '<cmd>checkhealth vim.lsp<CR>', { desc = 'Checkhealth LSP' })
 
-    -- MANUALLY ADDING LANGUAGE SERVERS
-    vim.lsp.enable { 'lua_ls' } -- NOTE: Had to do lua_ls manually as Mason's "lua-language-server" was using an outdated library "libbfd-2.38-system.so"
+    -- MANUALLY CONFIGURING LANGUAGE SERVERS
+    vim.lsp.config(
+      'lua_ls', -- NOTE: Had to do lua_ls manually as Mason's "lua-language-server" was using an outdated library "libbfd-2.38-system.so"
+      {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' },
+            },
+          },
+        },
+      }
+    )
   end,
 }
